@@ -1,36 +1,46 @@
 # FinanceBot
-Finance industry faces several challenges in solving customer queries as it requires a professional level
-of domain knowledge and each problem can be different according to customer’s need. The customer
-service officer needs to be proficient with simple financial terms like LTV, diversification, hedging to
-complex aspects of revenue modeling and this requires Financial firms to spend millions in training and
-upskilling their employees but that does not guarantee giving the best resolutions as per customer needs
-and requirements.
 
-To solve this problem our project tries to develop an advanced chatbot which not only can understand
-customer’s problems but also gives personalized feedback to help consumers’ financial behaviour. It will
-improve both customer’s user experience and operational efficiency of firms as it requires less manpower.
-The developed chatbot can be deployed for live applications to help customers 24X7. It will help users to
-make better decisions in their financial decision making, helping them to improve their financial literacy
-while maintaining strict regulatory compliances recommended by competent authorities.
-To develop the chatbot which we named as “FinanceBot” this project explored various advanced
-architectures to improve the accuracy and performance in advanced financial question answering. To
-train the model, this project used a simple Sequence to Sequence(LSTM) architecture without any
-attention mechanisms as a baseline experiments, the results are unsatisfactory hence for the second
-experiment we continued our Sequence to Sequence(GRU) training with adding a Luong attention in
-the architecture, the results improved but still it was not acceptable. For the final Sequence to Sequence
-model training we have integrated a pre trained Glove embedding finetuned with our custom dataset
-along with Luong attention. We replaced the GRU cells from the architecture with LSTM cell blocks,
-observing a substantial improvement in model performance and managed to achieve a perplexity score of
-2 (approx). Furthermore we continued our model training with Transformers architecture for advanced
-model training. The first training was conducted with transformers along with multi head attention but
-perplexity was achieved around 15. Furthermore The training was conducted with Talking head attention
-and MQA which brought down the perplexity to 2.63 and 1.20 respectively. With MQA we able to
-achieve a score which is almost closer to 1 which was satisfactory.
+<div align="justify">
 
-Though out of all the experiments we have achieved a good perplexity score but still it was noticed
-that the model is unable to give satisfactory answers. Hence the model needs further experiments with
-varied and large datasets to understand the context which we kept as a future part of the project. In
-addition to that, we also plan to develop a fully optimised and stacked transformers architecture with
-multiple attention heads like GPT-2 to train the model. Out of all the experiment conducted above proves
-that changing the architecture with advanced transformers along with a large dataset can improve the
-performance of Chatbot before deploying it for pro
+## Context
+
+The application of Artificial Intelligence in finance has been highly effective. If, in the past, this use was focused on predicting new investment trends and detecting fraudulent activities, with the advancement
+of Generative Artificial Intelligence, chatbots (Mohamad Suhaili et al., 2021), systems that communicate with the user upon receiving requests in natural language, have been intensively developed to reduce the heavy workload of employees and improve the operational efficiency of organizations (Balaji et al.,2024). Banks, hedge funds, and private equity firms have been eager to use generative AI moving from pockets of experimentation to scaling companywide.
+
+The Current literature for conversational generation focuses largely on improving generation capabilities in specific systems with much of the literature elucidating on pre-trained LLMs, expecially in health
+care fields (Yu and McGuinness, 2024). The intent of this project is to develop a chatbot focused on finance as a specific domain , priotizing efficiency and accuracy for financial subjects.By incorporating
+a domain-specific knowledge, its possible to enhance the accuracy and relevance of responses.Sequence to Sequence Learning(Seq2Seq) presented an end-to-end approach to sequence learning, making minimal assumptions on the sequence structure. Using a multilayered Long Short-Term Memory(LSTM) mapping the input to a vector of a fixed dimensionality sebsequenced by another deep LSTM to decode the target sequence from the vector. Showing that could learn sensible phases and setences representations.(Sutskever et al., 2014) Luong Attention (Luong et al., 2015) simplifies the computation of alignment scores by using matrix multiplication. Providing a computationally efficient way of dynamically attending to input sequence elements during decoding,faster for short sequences.The baseline Transformers Vaswani et al. (2017) following attention mechanisms, demonstrates a
+good generalization when applied to the English constituency parsing observing with large and limited training data. Inside this approach Multi-head Attention is presented as a module for attention mechan-isms extending self-attention by splitting the input into multiple heads, allowing for attending different sequences including longer-term dependencies and shorter-term dependencies.
+
+MHA Talking heads attention(Shazeer et al., 2020) aims to include linear projections across the attention-heads, before and after softmax, generating better quality when transfer-learning to language comprehension and question answering tasks. The variation of MHA named MQA(Multy Query Attention)Shazeer (2019) introduces the key and values shared across all the different attention heads, with a proeminent resulting in a faster process training and with minor quality degradation.
+
+
+The focus of this project is to investigate effective model implementations that can be case studied by companies when it comes to conversational systems. Using the finance alpaca datadrame, we propose
+a benchmark study of various models architcures with emphasis on the baseline generative models such as SeqSeq2 and Transformers, as well as their subsequent evolutions, following the stipulations of the original articles.
+
+## Dataset
+The dataset used in this work is the Finance Alpaca dataset (Bharti, 2024). In a JSON format, is a specialized instruction-tuning dataset for large language models (LLMs) in the financial domain.It contains 68,912 examples formatted as instruction-input-output triples, combining Stanford’s Alpaca, FiQA, and around 1,300 GPT-3.5-generated examples.The dataset is in English and commonly used forfine-tuning models such as Llama 3.1 8B.
+
+## Architectures
+
+### Sequence to Sequence
+Sequence to Sequence models are built using two main components Encoder and Decoder. The encoder processes the input text and converts it into a fixed size context vector, which captures important information from the input sequence Sutskever et al. (2014)
+
+### Attention Mechanism
+Seq2Seq models use the attention mechanism to focus on the most important parts of the input while minimizing the impact of irrelevant information during training. Attention helps the model handle long input sentences by focusing on the certain words that are crucial for predicting the correct output.
+
+### Bahdanau Attention
+
+Bahdanau attention mechanism, also known as additive attention, is the architecture of the encoder block that stays the same. However, in the decoder, a small feedforward neural network called the alignment model is added. The process starts by feeding the input sentence into the encoder, to get hidden states like hi e.g h1, h2, h3, h4 and so on.
+
+### Luong Attention
+
+In contrast, Luong attention, also known as dot product or multiplicative attention, introduces a few improvements over Bahdanau attention. In Luong attention, the attention weights are calculated using the current hidden states of both the encoder and the decoder, unlike Bahdanau attention, which uses the previous hidden state of the decoder. This approach makes Luong attention slightly simpler and more efficient.
+
+### Transformers
+
+With the introduction of attention mechanisms, a technique used to provide weights to different parts of an input sequence so that a better understanding of its underlying context is achieved. The Transformers
+model architecture can be defined by a combination of encoder, decoder, attention, feed-forward networks (FFN), normalization layers, and positional coding.
+
+
+</div>

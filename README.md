@@ -26,8 +26,19 @@ The dataset used in this work is the Finance Alpaca dataset (Bharti, 2024). In a
 ### Sequence to Sequence
 Sequence to Sequence models are built using two main components Encoder and Decoder. The encoder processes the input text and converts it into a fixed size context vector, which captures important information from the input sequence Sutskever et al. (2014)
 
+<p align="center">
+  <img src="images/sequence-to-sequence.png" alt="Alt text" width="400"/>
+</p>
+
+
 ### Attention Mechanism
+
 Seq2Seq models use the attention mechanism to focus on the most important parts of the input while minimizing the impact of irrelevant information during training. Attention helps the model handle long input sentences by focusing on the certain words that are crucial for predicting the correct output.
+
+<p align="center">
+  <img src="images/attention-mechanism.png" alt="Alt text" width="400"/>
+</p>
+
 
 ### Bahdanau Attention
 
@@ -39,8 +50,32 @@ In contrast, Luong attention, also known as dot product or multiplicative attent
 
 ### Transformers
 
+
 With the introduction of attention mechanisms, a technique used to provide weights to different parts of an input sequence so that a better understanding of its underlying context is achieved. The Transformers
 model architecture can be defined by a combination of encoder, decoder, attention, feed-forward networks (FFN), normalization layers, and positional coding.
+
+<p align="center">
+  <img src="images/transformers.png" alt="Alt text" width="400"/>
+</p>
+
+## Project Structure
+
+**Data**: Contains dataswt used for model training, validation, and testing.
+
+**Seq2SeqwithoutAttention**: Implements the baseline sequence-to-sequence (Seq2Seq) model without attention, serving as a reference architecture for comparison
+
+**Seq2SeqwithAttention**: Implements a Seq2Seq architecture enhanced with an attention mechanism, allowing the decoder to dynamically focus on relevant parts of the input sequence
+
+**Seq2SeqAdvanced**: Contains extended or optimized Seq2Seq models with architectural and training improvements beyond the standard implementations
+
+**TransformersMultiHeadAttention**: Implements Transformer models using the standard multi-head attention mechanism, following the original Transformer architecture
+
+**TransformersMQA**: Implements Transformer architectures with Multi-Query Attention (MQA), focusing on improved efficiency and reduced memory usage
+
+**TransformersTalkingHeadAttention**: Explores Talking-Head Attention, an advanced Transformer variant where attention heads can interact to improve representational capacity
+
+
+
 
 
 </div>
